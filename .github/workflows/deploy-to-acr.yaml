@@ -1,0 +1,34 @@
+name: 'deploy-to-acr'
+
+on:
+  push:
+    branches:
+    - main
+  pull_request:
+
+jobs:
+
+  deploy-to-acr:
+    name: 'deploy-to-acr'
+    runs-on: ubuntu-latest
+    env:
+      ResourceGroupName: tamops-acr-githubaction
+      ResourceGroupLocation: "uksouth"
+      AcrName: tamopsactionacr
+    environment: production
+
+    steps:
+
+    - uses: actions/checkout@v2
+
+    - uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        
+    - name: Az CLI Create Resource Group and ACR
+      uses: Azure/CLI@v1
+      with:
+        inlineScript: |
+          #!/bin/bash
+          az group create --name ${{ env.ResourceGroupName }} --location ${{ env.ResourceGroupLocation }}
+          az acr create -g ${{ env.ResourceGroupName }} -n $AcrName --sku basic --admin-enabled true
