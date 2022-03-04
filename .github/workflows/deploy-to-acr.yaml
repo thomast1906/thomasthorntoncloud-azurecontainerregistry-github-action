@@ -21,6 +21,9 @@ jobs:
 
     - uses: actions/checkout@v2
 
+    - name: Azure CLI Action
+      uses: Azure/cli@v1
+
     - uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
