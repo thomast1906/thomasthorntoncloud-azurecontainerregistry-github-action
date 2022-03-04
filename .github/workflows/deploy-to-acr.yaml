@@ -40,5 +40,5 @@ jobs:
         username: ${{ secrets.REGISTRY_USERNAME }}
         password: ${{ secrets.REGISTRY_PASSWORD }}
     - run: |
-        docker build . -f sampleapp/app/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/aspcoresample:${{ github.sha }}
-        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/aspcoresample:${{ github.sha }}
+        docker build . -f sampleapp/app/Dockerfile -t ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
+        docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/sampleapp:${{ github.sha }}
