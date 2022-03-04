@@ -12,7 +12,7 @@ jobs:
     name: 'deploy-to-acr'
     runs-on: ubuntu-latest
     env:
-      ResourceGroupName: tamops-acr-githubaction
+      ResourceGroupName: tamops-acr-github
       ResourceGroupLocation: "uksouth"
       AcrName: tamopsactionacr
     environment: production
